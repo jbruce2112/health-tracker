@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "HealthKitManager.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) HealthKitManager *hkManager;
 
 @end
 
@@ -16,6 +19,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
+	self.hkManager = [[HealthKitManager alloc] init];
+	
 	// Override point for customization after application launch.
 	return YES;
 }
