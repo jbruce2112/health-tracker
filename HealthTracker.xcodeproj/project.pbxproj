@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5207E7991F283BB100B7DFDC /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207E7981F283BB100B7DFDC /* Nutrient.swift */; };
 		523780E01F28108B00354C45 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467651F280FBF0037B97D /* HealthKitManager.swift */; };
 		523780E11F28109A00354C45 /* NutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467631F280FB20037B97D /* NutritionViewController.swift */; };
 		523780E51F28110000354C45 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523780E41F28110000354C45 /* HealthKit.framework */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5207E7981F283BB100B7DFDC /* Nutrient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
 		523780E21F28110000354C45 /* HealthTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthTracker.entitlements; sourceTree = "<group>"; };
 		523780E41F28110000354C45 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5266DB1A1F280F01007AE9CC /* HealthTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				52B467651F280FBF0037B97D /* HealthKitManager.swift */,
+				5207E7981F283BB100B7DFDC /* Nutrient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			files = (
 				523780E11F28109A00354C45 /* NutritionViewController.swift in Sources */,
 				523780E01F28108B00354C45 /* HealthKitManager.swift in Sources */,
+				5207E7991F283BB100B7DFDC /* Nutrient.swift in Sources */,
 				5266DB1E1F280F01007AE9CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	private let healthKitManager = HealthKitManager()
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+		
+		let navController = window!.rootViewController as! UINavigationController
+		let nutritionController = navController.viewControllers.first as! NutritionViewController
+		
+		nutritionController.healthKitManager = healthKitManager
+		
 		return true
 	}
 
