@@ -6,6 +6,8 @@
 build/
 DerivedData/
 
+.DS_Store
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
@@ -27,6 +29,17 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Packages/
+# Package.pins
+.build/
 
 # CocoaPods
 #
@@ -55,9 +68,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-# Code Injection
-#
-# After new code Injection tools there's a generated folder /iOSInjectionProject
-# https://github.com/johnno1962/injectionforxcode
-
-iOSInjectionProject/
+# jekyll
+_site/
+Gemfile.lock
