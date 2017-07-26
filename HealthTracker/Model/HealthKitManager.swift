@@ -11,16 +11,18 @@ import HealthKit
 
 class HealthKitManager {
 
-	var healthStore: HKHealthStore
+	private var healthStore: HKHealthStore
+	private let readTypes: Set<HKObjectType>
 
 	init() {
 
 		healthStore = HKHealthStore()
-		healthStore.requestAuthorization(toShare: nil, read: readTypes()) { (success, _) in
-		}
+		readTypes = HealthKitManager.getReadTypes()
+		
+		healthStore.requestAuthorization(toShare: nil, read: readTypes) { (_, _) in }
 	}
 
-	private func readTypes() -> Set<HKObjectType> {
+	private static func getReadTypes() -> Set<HKObjectType> {
 
 		return [HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)!,
 		        HKQuantityType.quantityType(forIdentifier: .dietaryCholesterol)!,
