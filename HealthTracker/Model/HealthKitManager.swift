@@ -9,6 +9,13 @@
 import Foundation
 import HealthKit
 
+enum CompareInterval {
+	case day
+	case week
+	case month
+	case year
+}
+
 class HealthKitManager {
 
 	private var healthStore: HKHealthStore
@@ -21,7 +28,7 @@ class HealthKitManager {
 		healthStore.requestAuthorization(toShare: nil, read: Nutrient.supportedTypes) { (_, _) in }
 	}
 	
-	func data(for date: Date, completion: @escaping ([String: Nutrient]) -> Void) {
+	func data(for date: Date, interval: CompareInterval, completion: @escaping ([String: Nutrient]) -> Void) {
 		
 		DispatchQueue.global().async {
 			

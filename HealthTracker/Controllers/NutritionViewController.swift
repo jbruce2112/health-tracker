@@ -16,28 +16,36 @@ class NutritionViewController: UIViewController {
 	
 	var healthKitManager: HealthKitManager!
 	
+	fileprivate var compareInterval = CompareInterval.day
 	fileprivate var nutrients: [(Nutrient?, Nutrient?)]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		tableView.dataSource = self
+		tabBar.delegate = self
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+	
+		refresh()
+	}
+	
+	func refresh() {
 		
 		let now = Date()
-		let yesterday = NSCalendar.current.date(byAdding: .day, value: -1, to: now)!
-		healthKitManager.data(for: yesterday) { yesterdayResult in
+		let prior = NSCalendar.current.date(byAdding: .day, value: -1, to: now)!
+		
+		healthKitManager.data(for: prior, interval: compareInterval) { priorResult in
 			
-			self.healthKitManager.data(for: now) { todayResult in
+			self.healthKitManager.data(for: now, interval: self.compareInterval) { currentResult in
 				
 				var newNutrients = [String: (Nutrient?, Nutrient?)]()
 				
 				// Combine the two days of results into the dictionary
-				todayResult.forEach { newNutrients[$0] = ($1, nil) }
-				yesterdayResult.forEach { newNutrients[$0] = (newNutrients[$0]?.0, $1) }
+				currentResult.forEach { newNutrients[$0] = ($1, nil) }
+				priorResult.forEach { newNutrients[$0] = (newNutrients[$0]?.0, $1) }
 				
 				// Sort the dictionary by key (nutrient name) and then extract the values
 				self.nutrients = newNutrients.sorted(by: { $0.0 < $1.0 }).map { $1 }
@@ -47,6 +55,7 @@ class NutritionViewController: UIViewController {
 	}
 }
 
+// MARK: UITableViewDataSource conformance
 extension NutritionViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,4 +88,21 @@ extension NutritionViewController: UITableViewDataSource {
 		
 		return cell
 	}	
+}
+
+// MARK: UITabBarDelegate conformance
+extension NutritionViewController: UITabBarDelegate {
+	
+	func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+		
+		switch item.tag {
+		case 1 : compareInterval = .day
+		case 2 : compareInterval = .week
+		case 3 : compareInterval = .month
+		case 4 : compareInterval = .year
+		default: compareInterval = .day
+		}
+		
+		refresh()
+	}
 }
