@@ -16,8 +16,7 @@ class NutritionViewController: UIViewController {
 	
 	var healthKitManager: HealthKitManager!
 	
-	fileprivate var priorNutrients: [Nutrient]?
-	fileprivate var currentNutrients: [Nutrient]?
+	fileprivate var nutrients: [(Nutrient?, Nutrient?)]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,8 +33,14 @@ class NutritionViewController: UIViewController {
 			
 			self.healthKitManager.data(for: now) { todayResult in
 				
-				self.priorNutrients = yesterdayResult
-				self.currentNutrients = todayResult
+				var newNutrients = [String: (Nutrient?, Nutrient?)]()
+				
+				// Combine the two days of results into the dictionary
+				todayResult.forEach { newNutrients[$0] = ($1, nil) }
+				yesterdayResult.forEach { newNutrients[$0] = (newNutrients[$0]?.0, $1) }
+				
+				// Sort the dictionary by key (nutrient name) and then extract the values
+				self.nutrients = newNutrients.sorted(by: { $0.0 < $1.0 }).map { $1 }
 				self.tableView.reloadData()
 			}
 		}
@@ -45,7 +50,7 @@ class NutritionViewController: UIViewController {
 extension NutritionViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return currentNutrients?.count ?? 0
+		return nutrients?.count ?? 0
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,20 +58,25 @@ extension NutritionViewController: UITableViewDataSource {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
 		
 		guard
-			let priorNutrients = priorNutrients,
-			let currentNutrients = currentNutrients,
-			let current = currentNutrients.count > indexPath.row ? currentNutrients[indexPath.row] : nil else {
+			let nutrients = nutrients,
+			let idx = nutrients.count > indexPath.row ? indexPath.row : nil,
+			let name = nutrients[idx].0?.name ?? nutrients[idx].1?.name,
+			let units = nutrients[idx].0?.units ?? nutrients[idx].1?.units else {
 			return cell
 		}
 		
-		// Make sure the nutrient identifiers match
-		let priorQuantity = priorNutrients.first(where: { $0.name == current.name })?.quantity ?? 0
+		let current = nutrients[idx].0
+		let prior = nutrients[idx].1
 		
-		cell.textLabel?.text = current.name
+		cell.textLabel?.text = name
 		
-		let change = current.quantity - priorQuantity
+		let priorQuantity = prior?.quantity ?? 0
+		let currentQuantity = current?.quantity ?? 0
+		let change = currentQuantity - priorQuantity
+		
 		let qualifier = change >= 0 ? "more" : "fewer"
-		cell.detailTextLabel?.text = "\(Int(abs(change))) \(current.units) \(qualifier)"
+		cell.detailTextLabel?.text = "\(Int(abs(change))) \(units) \(qualifier)"
+		
 		return cell
 	}	
 }

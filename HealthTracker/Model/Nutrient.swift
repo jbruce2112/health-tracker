@@ -9,48 +9,45 @@
 import Foundation
 import HealthKit
 
-struct Formatting {
-	
-	let name: String
-	let unit: HKUnit
-	
-	init(_ name: String, _ unit: HKUnit) {
-		self.name = name
-		self.unit = unit
-	}
-}
-
 struct Nutrient {
 	
 	let name: String
 	let quantity: Double
 	let units: String
 	
-	init(_ type: HKQuantityType, _ quantity: HKQuantity) {
+	init(type: HKQuantityType, quantity: HKQuantity) {
 		
-		name = Nutrient.SupportedTypes[type]?.name ?? ""
+		name = Nutrient.supportedTypeFormats[type]?.0 ?? ""
 		
-		let hkUnit = Nutrient.SupportedTypes[type]?.unit ?? HKUnit.gram()
+		let hkUnit = Nutrient.supportedTypeFormats[type]?.1 ?? HKUnit.gram()
 		self.quantity = quantity.doubleValue(for: hkUnit)
 		self.units = hkUnit.unitString
 	}
 	
-	static let SupportedTypes = {
+	// Expose the supported HealthKit nutrition types
+	static let supportedTypes = {
 		
-		return [HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)!: Formatting("Carbohydrates", HKUnit.gram()),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryCholesterol)!: Formatting("Cholesterol", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed)!: Formatting("Calorie Intake", HKUnit.kilocalorie()),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryFatSaturated)!: Formatting("Fat Saturated", HKUnit.gram()),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryFatTotal)!: Formatting("Fat Total", HKUnit.gram()),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryFiber)!: Formatting("Fiber", HKUnit.gram()),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryProtein)!: Formatting("Protein", HKUnit.gram()),
-		        HKQuantityType.quantityType(forIdentifier: .dietarySodium)!: Formatting("Sodium", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietarySugar)!: Formatting("Sugar", HKUnit.gram()),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminA)!: Formatting("Vitamin A", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminB12)!: Formatting("Vitamin B12", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminB6)!: Formatting("Vitamin B6", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminC)!: Formatting("Vitamin C", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminD)!: Formatting("Vitamin D", HKUnit.gramUnit(with: .milli)),
-		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminE)!: Formatting("Vitamin E", HKUnit.gramUnit(with: .milli))]
+		return Set(supportedTypeFormats.map { $0.key })
+	}()
+	
+	// Create a mapping of supported nutrient HealthKit data types
+	// to their respective display string and units appropriate for rendering
+	private static let supportedTypeFormats = {
+		
+		return [HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)!: ("Carbohydrates", HKUnit.gram()),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryCholesterol)!: ("Cholesterol", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed)!: ("Calorie Intake", HKUnit.kilocalorie()),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryFatSaturated)!: ("Fat Saturated", HKUnit.gram()),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryFatTotal)!: ("Fat Total", HKUnit.gram()),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryFiber)!: ("Fiber", HKUnit.gram()),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryProtein)!: ("Protein", HKUnit.gram()),
+		        HKQuantityType.quantityType(forIdentifier: .dietarySodium)!: ("Sodium", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietarySugar)!: ("Sugar", HKUnit.gram()),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminA)!: ("Vitamin A", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminB12)!: ("Vitamin B12", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminB6)!: ("Vitamin B6", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminC)!: ("Vitamin C", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminD)!: ("Vitamin D", HKUnit.gramUnit(with: .milli)),
+		        HKQuantityType.quantityType(forIdentifier: .dietaryVitaminE)!: ("Vitamin E", HKUnit.gramUnit(with: .milli))]
 	}()
 }

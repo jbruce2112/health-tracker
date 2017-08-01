@@ -18,15 +18,10 @@ class HealthKitManager {
 		healthStore = HKHealthStore()
 		
 		// Gather our supported types and request authorization from the health store
-		var sampleTypes = Set<HKQuantityType>()
-		for type in Nutrient.SupportedTypes {
-			sampleTypes.insert(type.key)
-		}
-		
-		healthStore.requestAuthorization(toShare: nil, read: sampleTypes) { (_, _) in }
+		healthStore.requestAuthorization(toShare: nil, read: Nutrient.supportedTypes) { (_, _) in }
 	}
 	
-	func data(for date: Date, completion: @escaping ([Nutrient]) -> Void) {
+	func data(for date: Date, completion: @escaping ([String: Nutrient]) -> Void) {
 		
 		DispatchQueue.global().async {
 			
@@ -37,13 +32,13 @@ class HealthKitManager {
 			let end = cal.date(byAdding: .day, value: 1, to: start)
 			let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
 			
-			var results = [Nutrient]()
+			var results = [String: Nutrient]()
 			
-			for sampleType in Nutrient.SupportedTypes {
+			for sampleType in Nutrient.supportedTypes {
 				
 				serviceGroup.enter()
 				
-				let query = HKStatisticsQuery(quantityType: sampleType.key, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+				let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
 					
 					defer {
 						serviceGroup.leave()
@@ -53,15 +48,14 @@ class HealthKitManager {
 						return
 					}
 					
-					results.append(Nutrient(statistic.quantityType, sum))
+					let nutrient = Nutrient(type: statistic.quantityType, quantity: sum)
+					results[nutrient.name] = nutrient
 				}
 				
 				self.healthStore.execute(query)
 			}
 			
 			serviceGroup.wait()
-			
-			results.sort { $0.name < $1.name }
 			
 			DispatchQueue.main.async {
 				completion(results)
