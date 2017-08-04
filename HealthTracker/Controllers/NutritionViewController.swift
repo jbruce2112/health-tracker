@@ -34,8 +34,21 @@ class NutritionViewController: UIViewController {
 	
 	func refresh() {
 		
+		var interval: Calendar.Component
+		
+		switch compareInterval {
+		case .day:
+			interval = .day
+		case .week:
+			interval = .weekOfYear
+		case .month:
+			interval = .month
+		case .year:
+			interval = .year
+		}
+		
 		let now = Date()
-		let prior = NSCalendar.current.date(byAdding: .day, value: -1, to: now)!
+		let prior = NSCalendar.current.date(byAdding: interval, value: -1, to: now)!
 		
 		healthKitManager.data(for: prior, interval: compareInterval) { priorResult in
 			
