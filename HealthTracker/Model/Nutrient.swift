@@ -15,13 +15,17 @@ struct Nutrient {
 	let quantity: Double
 	let units: String
 	
-	init(type: HKQuantityType, quantity: HKQuantity) {
+	init(name: String, quantity: Double, units: String) {
+		self.name = name
+		self.quantity = quantity
+		self.units = units
+	}
+	
+	init(queryResult query: QueryResultProtocol, quantity: HKQuantity) {
 		
-		name = Nutrient.supportedTypeFormats[type]?.0 ?? ""
-		
-		let hkUnit = Nutrient.supportedTypeFormats[type]?.1 ?? HKUnit.gram()
-		self.quantity = quantity.doubleValue(for: hkUnit)
-		self.units = hkUnit.unitString
+		self.name = query.name
+		self.units = query.units.unitString
+		self.quantity = quantity.doubleValue(for: query.units)
 	}
 	
 	// Expose the supported HealthKit nutrition types
@@ -32,7 +36,7 @@ struct Nutrient {
 	
 	// Create a mapping of supported nutrient HealthKit data types
 	// to their respective display string and units appropriate for rendering
-	private static let supportedTypeFormats = {
+	static let supportedTypeFormats = {
 		
 		return [HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)!: ("Carbohydrates", HKUnit.gram()),
 		        HKQuantityType.quantityType(forIdentifier: .dietaryCholesterol)!: ("Cholesterol", HKUnit.gramUnit(with: .milli)),

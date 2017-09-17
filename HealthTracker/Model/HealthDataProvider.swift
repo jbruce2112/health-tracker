@@ -16,16 +16,16 @@ enum CompareInterval {
 	case year
 }
 
-class HealthKitManager {
+protocol HealthDataProviderProtocol {
+	func data(for date: Date, interval: CompareInterval, completion: @escaping ([String: Nutrient]) -> Void)
+}
 
-	private var healthStore: HKHealthStore
+class HealthDataProvider: HealthDataProviderProtocol {
 
-	init() {
+	private let healthStore: HealthStoreProtocol
 
-		healthStore = HKHealthStore()
-		
-		// Gather our supported types and request authorization from the health store
-		healthStore.requestAuthorization(toShare: nil, read: Nutrient.supportedTypes) { (_, _) in }
+	init(withStore store: HealthStoreProtocol) {
+		self.healthStore = store
 	}
 	
 	func data(for date: Date, interval: CompareInterval, completion: @escaping ([String: Nutrient]) -> Void) {
@@ -44,21 +44,25 @@ class HealthKitManager {
 			for sampleType in Nutrient.supportedTypes {
 				
 				serviceGroup.enter()
-				
-				let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+				let queryCompletionHandler: (QueryResultProtocol?) -> Void = { result in
 					
 					defer {
 						serviceGroup.leave()
 					}
 					
-					guard let statistic = result, let sum = statistic.sumQuantity() else {
+					guard let statistic = result, let sum = statistic.result else {
 						return
 					}
 					
-					let nutrient = Nutrient(type: statistic.quantityType, quantity: sum)
+					let nutrient = Nutrient(queryResult: statistic, quantity: sum)
 					results[nutrient.name] = nutrient
 				}
 				
+				let hkQuery = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+					queryCompletionHandler(result)
+				}
+				
+				let query = Query(query: hkQuery, start: start, end: end, sampleType: sampleType, completion: queryCompletionHandler)
 				self.healthStore.execute(query)
 			}
 			

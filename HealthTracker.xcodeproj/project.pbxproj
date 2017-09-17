@@ -8,16 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		5207E7991F283BB100B7DFDC /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207E7981F283BB100B7DFDC /* Nutrient.swift */; };
-		523780E01F28108B00354C45 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467651F280FBF0037B97D /* HealthKitManager.swift */; };
+		52374AC91F6F2273000318B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52374AC81F6F2273000318B0 /* main.swift */; };
+		52374ACB1F6F26AC000318B0 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52374ACA1F6F26AC000318B0 /* Query.swift */; };
+		52374ACD1F6F3138000318B0 /* QueryResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52374ACC1F6F3138000318B0 /* QueryResultProtocol.swift */; };
+		523780E01F28108B00354C45 /* HealthDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467651F280FBF0037B97D /* HealthDataProvider.swift */; };
 		523780E11F28109A00354C45 /* NutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467631F280FB20037B97D /* NutritionViewController.swift */; };
 		523780E51F28110000354C45 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523780E41F28110000354C45 /* HealthKit.framework */; };
 		5266DB1E1F280F01007AE9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266DB1D1F280F01007AE9CC /* AppDelegate.swift */; };
 		5266DB231F280F01007AE9CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5266DB211F280F01007AE9CC /* Main.storyboard */; };
 		5266DB251F280F01007AE9CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5266DB241F280F01007AE9CC /* Assets.xcassets */; };
+		52D1033E1F6F1AF000D27FB6 /* HealthDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1033D1F6F1AF000D27FB6 /* HealthDataProviderTests.swift */; };
+		52D103461F6F1B2E00D27FB6 /* MockHealthDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D103451F6F1B2E00D27FB6 /* MockHealthDataProvider.swift */; };
+		52D103481F6F1D0200D27FB6 /* HealthStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D103471F6F1D0200D27FB6 /* HealthStoreProtocol.swift */; };
+		52D1034A1F6F1D8600D27FB6 /* MockHealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D103491F6F1D8600D27FB6 /* MockHealthStore.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52D103401F6F1AF000D27FB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5266DB121F280F01007AE9CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5266DB191F280F01007AE9CC;
+			remoteInfo = HealthTracker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5207E7981F283BB100B7DFDC /* Nutrient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
+		52374AC81F6F2273000318B0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		52374ACA1F6F26AC000318B0 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		52374ACC1F6F3138000318B0 /* QueryResultProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryResultProtocol.swift; sourceTree = "<group>"; };
 		523780E21F28110000354C45 /* HealthTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthTracker.entitlements; sourceTree = "<group>"; };
 		523780E41F28110000354C45 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5266DB1A1F280F01007AE9CC /* HealthTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,7 +46,13 @@
 		5266DB241F280F01007AE9CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5266DB291F280F01007AE9CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B467631F280FB20037B97D /* NutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionViewController.swift; sourceTree = "<group>"; };
-		52B467651F280FBF0037B97D /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		52B467651F280FBF0037B97D /* HealthDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataProvider.swift; sourceTree = "<group>"; };
+		52D1033B1F6F1AF000D27FB6 /* HealthTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52D1033D1F6F1AF000D27FB6 /* HealthDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataProviderTests.swift; sourceTree = "<group>"; };
+		52D1033F1F6F1AF000D27FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52D103451F6F1B2E00D27FB6 /* MockHealthDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHealthDataProvider.swift; sourceTree = "<group>"; };
+		52D103471F6F1D0200D27FB6 /* HealthStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreProtocol.swift; sourceTree = "<group>"; };
+		52D103491F6F1D8600D27FB6 /* MockHealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHealthStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +61,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				523780E51F28110000354C45 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D103381F6F1AF000D27FB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				5266DB1D1F280F01007AE9CC /* AppDelegate.swift */,
+				52374AC81F6F2273000318B0 /* main.swift */,
 				5266DB211F280F01007AE9CC /* Main.storyboard */,
 				5266DB241F280F01007AE9CC /* Assets.xcassets */,
 				5266DB291F280F01007AE9CC /* Info.plist */,
@@ -65,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				5266DB1C1F280F01007AE9CC /* HealthTracker */,
+				52D1033C1F6F1AF000D27FB6 /* HealthTrackerTests */,
 				5266DB1B1F280F01007AE9CC /* Products */,
 				523780E31F28110000354C45 /* Frameworks */,
 			);
@@ -74,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				5266DB1A1F280F01007AE9CC /* HealthTracker.app */,
+				52D1033B1F6F1AF000D27FB6 /* HealthTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,10 +135,24 @@
 		52B467641F280FBF0037B97D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				52B467651F280FBF0037B97D /* HealthKitManager.swift */,
+				52B467651F280FBF0037B97D /* HealthDataProvider.swift */,
+				52D103471F6F1D0200D27FB6 /* HealthStoreProtocol.swift */,
+				52374ACA1F6F26AC000318B0 /* Query.swift */,
+				52374ACC1F6F3138000318B0 /* QueryResultProtocol.swift */,
 				5207E7981F283BB100B7DFDC /* Nutrient.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52D1033C1F6F1AF000D27FB6 /* HealthTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				52D1033D1F6F1AF000D27FB6 /* HealthDataProviderTests.swift */,
+				52D103451F6F1B2E00D27FB6 /* MockHealthDataProvider.swift */,
+				52D103491F6F1D8600D27FB6 /* MockHealthStore.swift */,
+				52D1033F1F6F1AF000D27FB6 /* Info.plist */,
+			);
+			path = HealthTrackerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +176,24 @@
 			productReference = 5266DB1A1F280F01007AE9CC /* HealthTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		52D1033A1F6F1AF000D27FB6 /* HealthTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52D103421F6F1AF000D27FB6 /* Build configuration list for PBXNativeTarget "HealthTrackerTests" */;
+			buildPhases = (
+				52D103371F6F1AF000D27FB6 /* Sources */,
+				52D103381F6F1AF000D27FB6 /* Frameworks */,
+				52D103391F6F1AF000D27FB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52D103411F6F1AF000D27FB6 /* PBXTargetDependency */,
+			);
+			name = HealthTrackerTests;
+			productName = HealthTrackerTests;
+			productReference = 52D1033B1F6F1AF000D27FB6 /* HealthTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -146,6 +214,11 @@
 							};
 						};
 					};
+					52D1033A1F6F1AF000D27FB6 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5266DB191F280F01007AE9CC;
+					};
 				};
 			};
 			buildConfigurationList = 5266DB151F280F01007AE9CC /* Build configuration list for PBXProject "HealthTracker" */;
@@ -162,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				5266DB191F280F01007AE9CC /* HealthTracker */,
+				52D1033A1F6F1AF000D27FB6 /* HealthTrackerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -173,6 +247,13 @@
 			files = (
 				5266DB251F280F01007AE9CC /* Assets.xcassets in Resources */,
 				5266DB231F280F01007AE9CC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D103391F6F1AF000D27FB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,14 +280,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D103481F6F1D0200D27FB6 /* HealthStoreProtocol.swift in Sources */,
+				52374ACD1F6F3138000318B0 /* QueryResultProtocol.swift in Sources */,
 				523780E11F28109A00354C45 /* NutritionViewController.swift in Sources */,
-				523780E01F28108B00354C45 /* HealthKitManager.swift in Sources */,
+				52374AC91F6F2273000318B0 /* main.swift in Sources */,
+				523780E01F28108B00354C45 /* HealthDataProvider.swift in Sources */,
 				5207E7991F283BB100B7DFDC /* Nutrient.swift in Sources */,
 				5266DB1E1F280F01007AE9CC /* AppDelegate.swift in Sources */,
+				52374ACB1F6F26AC000318B0 /* Query.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D103371F6F1AF000D27FB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52D1034A1F6F1D8600D27FB6 /* MockHealthStore.swift in Sources */,
+				52D103461F6F1B2E00D27FB6 /* MockHealthDataProvider.swift in Sources */,
+				52D1033E1F6F1AF000D27FB6 /* HealthDataProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52D103411F6F1AF000D27FB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5266DB191F280F01007AE9CC /* HealthTracker */;
+			targetProxy = 52D103401F6F1AF000D27FB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5266DB211F280F01007AE9CC /* Main.storyboard */ = {
@@ -367,6 +470,40 @@
 			};
 			name = Release;
 		};
+		52D103431F6F1AF000D27FB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UVXX33WP85;
+				INFOPLIST_FILE = HealthTrackerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bruce32.HealthTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthTracker.app/HealthTracker";
+			};
+			name = Debug;
+		};
+		52D103441F6F1AF000D27FB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UVXX33WP85;
+				INFOPLIST_FILE = HealthTrackerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bruce32.HealthTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthTracker.app/HealthTracker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,6 +521,15 @@
 			buildConfigurations = (
 				5266DB2D1F280F01007AE9CC /* Debug */,
 				5266DB2E1F280F01007AE9CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52D103421F6F1AF000D27FB6 /* Build configuration list for PBXNativeTarget "HealthTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52D103431F6F1AF000D27FB6 /* Debug */,
+				52D103441F6F1AF000D27FB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
