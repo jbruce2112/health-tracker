@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import HealthKit
 
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	private let healthKitManager = HealthKitManager()
 	private var nutritionController: NutritionViewController!
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -19,11 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let navController = window!.rootViewController as! UINavigationController
 		nutritionController = navController.viewControllers.first as! NutritionViewController
 		
-		let healthStore = HKHealthStore()
-		// Gather our supported types and request authorization from the health store
-		healthStore.requestAuthorization(toShare: nil, read: Nutrient.supportedTypes) { (_, _) in }
-		
-		nutritionController.healthDataProvider = HealthDataProvider(withStore: healthStore)
+		nutritionController.healthKitManager = healthKitManager
 		
 		return true
 	}

@@ -14,7 +14,7 @@ class NutritionViewController: UIViewController {
 	@IBOutlet var tableView: UITableView!
 	@IBOutlet var tabBar: UITabBar!
 	
-	var healthDataProvider: HealthDataProviderProtocol!
+	var healthKitManager: HealthKitManager!
 	
 	fileprivate var compareInterval = CompareInterval.day
 	fileprivate var nutrients: [(Nutrient?, Nutrient?)]?
@@ -50,9 +50,9 @@ class NutritionViewController: UIViewController {
 		let now = Date()
 		let prior = NSCalendar.current.date(byAdding: interval, value: -1, to: now)!
 		
-		healthDataProvider.data(for: prior, interval: compareInterval) { priorResult in
+		healthKitManager.data(for: prior, interval: compareInterval) { priorResult in
 			
-			self.healthDataProvider.data(for: now, interval: self.compareInterval) { currentResult in
+			self.healthKitManager.data(for: now, interval: self.compareInterval) { currentResult in
 				
 				var newNutrients = [String: (Nutrient?, Nutrient?)]()
 				
