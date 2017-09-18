@@ -1,5 +1,5 @@
 //
-//  HealthKitManager.swift
+//  HealthDataProvider.swift
 //  HealthTracker
 //
 //  Created by John on 7/25/17.
@@ -16,16 +16,20 @@ enum CompareInterval {
 	case year
 }
 
-class HealthKitManager {
+protocol HealthDataProviderProtocol {
+	
+	func data(for date: Date, interval: CompareInterval, completion: @escaping ([String: Nutrient]) -> Void)
+}
+
+class HealthDataProvider: HealthDataProviderProtocol {
 
 	private var healthStore: HKHealthStore
 
-	init() {
+	init(withSupportFor types: Set<HKQuantityType>) {
 
 		healthStore = HKHealthStore()
-		
 		// Gather our supported types and request authorization from the health store
-		healthStore.requestAuthorization(toShare: nil, read: Nutrient.supportedTypes) { (_, _) in }
+		healthStore.requestAuthorization(toShare: nil, read: types) { (_, _) in }
 	}
 	
 	func data(for date: Date, interval: CompareInterval, completion: @escaping ([String: Nutrient]) -> Void) {

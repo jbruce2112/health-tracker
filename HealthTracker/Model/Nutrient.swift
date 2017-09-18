@@ -15,6 +15,12 @@ struct Nutrient {
 	let quantity: Double
 	let units: String
 	
+	init(name: String, quantity: Double, units: String) {
+		self.name = name
+		self.quantity = quantity
+		self.units = units
+	}
+	
 	init(type: HKQuantityType, quantity: HKQuantity) {
 		
 		name = Nutrient.supportedTypeFormats[type]?.0 ?? ""

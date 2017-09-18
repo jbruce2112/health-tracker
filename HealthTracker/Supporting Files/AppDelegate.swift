@@ -12,15 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	private let healthKitManager = HealthKitManager()
 	private var nutritionController: NutritionViewController!
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
+		let healthProvider = HealthDataProvider(withSupportFor: Nutrient.supportedTypes)
+		let nutrientViewModel = NutrientViewModel(withProvider: healthProvider)
+		
 		let navController = window!.rootViewController as! UINavigationController
 		nutritionController = navController.viewControllers.first as! NutritionViewController
-		
-		nutritionController.healthKitManager = healthKitManager
+		nutritionController.nutrientViewModel = nutrientViewModel
 		
 		return true
 	}

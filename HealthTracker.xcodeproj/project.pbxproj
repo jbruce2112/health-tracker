@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5207E7991F283BB100B7DFDC /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207E7981F283BB100B7DFDC /* Nutrient.swift */; };
-		523780E01F28108B00354C45 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467651F280FBF0037B97D /* HealthKitManager.swift */; };
+		52374AD51F6F5367000318B0 /* HealthDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52374AD41F6F5367000318B0 /* HealthDataProviderTests.swift */; };
+		52374ADD1F6F537B000318B0 /* MockHealthDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52374ADC1F6F537B000318B0 /* MockHealthDataProvider.swift */; };
+		52374ADF1F6F585E000318B0 /* NutrientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52374ADE1F6F585E000318B0 /* NutrientViewModel.swift */; };
+		523780E01F28108B00354C45 /* HealthDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467651F280FBF0037B97D /* HealthDataProvider.swift */; };
 		523780E11F28109A00354C45 /* NutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B467631F280FB20037B97D /* NutritionViewController.swift */; };
 		523780E51F28110000354C45 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523780E41F28110000354C45 /* HealthKit.framework */; };
 		5266DB1E1F280F01007AE9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266DB1D1F280F01007AE9CC /* AppDelegate.swift */; };
@@ -16,8 +19,23 @@
 		5266DB251F280F01007AE9CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5266DB241F280F01007AE9CC /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		52374AD71F6F5368000318B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5266DB121F280F01007AE9CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5266DB191F280F01007AE9CC;
+			remoteInfo = HealthTracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		5207E7981F283BB100B7DFDC /* Nutrient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
+		52374AD21F6F5367000318B0 /* HealthTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52374AD41F6F5367000318B0 /* HealthDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataProviderTests.swift; sourceTree = "<group>"; };
+		52374AD61F6F5368000318B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52374ADC1F6F537B000318B0 /* MockHealthDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHealthDataProvider.swift; sourceTree = "<group>"; };
+		52374ADE1F6F585E000318B0 /* NutrientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewModel.swift; sourceTree = "<group>"; };
 		523780E21F28110000354C45 /* HealthTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthTracker.entitlements; sourceTree = "<group>"; };
 		523780E41F28110000354C45 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5266DB1A1F280F01007AE9CC /* HealthTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,10 +44,17 @@
 		5266DB241F280F01007AE9CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5266DB291F280F01007AE9CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B467631F280FB20037B97D /* NutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionViewController.swift; sourceTree = "<group>"; };
-		52B467651F280FBF0037B97D /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		52B467651F280FBF0037B97D /* HealthDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		52374ACF1F6F5367000318B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5266DB171F280F01007AE9CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -41,6 +66,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52374AD31F6F5367000318B0 /* HealthTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				52374AD41F6F5367000318B0 /* HealthDataProviderTests.swift */,
+				52374AD61F6F5368000318B0 /* Info.plist */,
+				52374ADC1F6F537B000318B0 /* MockHealthDataProvider.swift */,
+			);
+			path = HealthTrackerTests;
+			sourceTree = "<group>";
+		};
 		523780E31F28110000354C45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				5266DB1C1F280F01007AE9CC /* HealthTracker */,
+				52374AD31F6F5367000318B0 /* HealthTrackerTests */,
 				5266DB1B1F280F01007AE9CC /* Products */,
 				523780E31F28110000354C45 /* Frameworks */,
 			);
@@ -74,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				5266DB1A1F280F01007AE9CC /* HealthTracker.app */,
+				52374AD21F6F5367000318B0 /* HealthTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,8 +136,9 @@
 		52B467641F280FBF0037B97D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				52B467651F280FBF0037B97D /* HealthKitManager.swift */,
+				52B467651F280FBF0037B97D /* HealthDataProvider.swift */,
 				5207E7981F283BB100B7DFDC /* Nutrient.swift */,
+				52374ADE1F6F585E000318B0 /* NutrientViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +146,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		52374AD11F6F5367000318B0 /* HealthTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52374ADB1F6F5368000318B0 /* Build configuration list for PBXNativeTarget "HealthTrackerTests" */;
+			buildPhases = (
+				52374ACE1F6F5367000318B0 /* Sources */,
+				52374ACF1F6F5367000318B0 /* Frameworks */,
+				52374AD01F6F5367000318B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52374AD81F6F5368000318B0 /* PBXTargetDependency */,
+			);
+			name = HealthTrackerTests;
+			productName = HealthTrackerTests;
+			productReference = 52374AD21F6F5367000318B0 /* HealthTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5266DB191F280F01007AE9CC /* HealthTracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5266DB2C1F280F01007AE9CC /* Build configuration list for PBXNativeTarget "HealthTracker" */;
@@ -136,6 +192,11 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Bruce32;
 				TargetAttributes = {
+					52374AD11F6F5367000318B0 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5266DB191F280F01007AE9CC;
+					};
 					5266DB191F280F01007AE9CC = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
@@ -162,11 +223,19 @@
 			projectRoot = "";
 			targets = (
 				5266DB191F280F01007AE9CC /* HealthTracker */,
+				52374AD11F6F5367000318B0 /* HealthTrackerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		52374AD01F6F5367000318B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5266DB181F280F01007AE9CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,18 +264,36 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		52374ACE1F6F5367000318B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52374ADD1F6F537B000318B0 /* MockHealthDataProvider.swift in Sources */,
+				52374AD51F6F5367000318B0 /* HealthDataProviderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5266DB161F280F01007AE9CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				523780E11F28109A00354C45 /* NutritionViewController.swift in Sources */,
-				523780E01F28108B00354C45 /* HealthKitManager.swift in Sources */,
+				523780E01F28108B00354C45 /* HealthDataProvider.swift in Sources */,
 				5207E7991F283BB100B7DFDC /* Nutrient.swift in Sources */,
 				5266DB1E1F280F01007AE9CC /* AppDelegate.swift in Sources */,
+				52374ADF1F6F585E000318B0 /* NutrientViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52374AD81F6F5368000318B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5266DB191F280F01007AE9CC /* HealthTracker */;
+			targetProxy = 52374AD71F6F5368000318B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5266DB211F280F01007AE9CC /* Main.storyboard */ = {
@@ -220,6 +307,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		52374AD91F6F5368000318B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UVXX33WP85;
+				INFOPLIST_FILE = HealthTrackerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bruce32.HealthTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthTracker.app/HealthTracker";
+			};
+			name = Debug;
+		};
+		52374ADA1F6F5368000318B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UVXX33WP85;
+				INFOPLIST_FILE = HealthTrackerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bruce32.HealthTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthTracker.app/HealthTracker";
+			};
+			name = Release;
+		};
 		5266DB2A1F280F01007AE9CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,6 +491,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		52374ADB1F6F5368000318B0 /* Build configuration list for PBXNativeTarget "HealthTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52374AD91F6F5368000318B0 /* Debug */,
+				52374ADA1F6F5368000318B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5266DB151F280F01007AE9CC /* Build configuration list for PBXProject "HealthTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
